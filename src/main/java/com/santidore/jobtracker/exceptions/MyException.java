@@ -1,0 +1,13 @@
+
+package com.santidore.jobtracker.exceptions;
+
+/**
+ *
+ * @author Santi
+ */
+public class MyException extends RuntimeException {
+    
+    public MyException (String msg){
+        super(msg);
+    }
+}
