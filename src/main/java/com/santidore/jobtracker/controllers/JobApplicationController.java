@@ -102,7 +102,7 @@ public class JobApplicationController {
         }
         try {
             jobApplicationService.deleteJobApplication(id);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Job Application ID: \" " + id + "\" deleted succesfuly.");
+            return ResponseEntity.status(HttpStatus.CREATED).body("Job Application ID: \"" + id + "\" deleted succesfuly.");
         }catch (MyException e){
             return ResponseEntity.badRequest().body("Error deleting the Job Application.");
         }

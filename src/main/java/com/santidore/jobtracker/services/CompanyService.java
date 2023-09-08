@@ -64,14 +64,14 @@ public class CompanyService {
     }
     
     @Transactional
-    public void deleteCompany(String companyId) throws MyException{
+    public void deleteCompany(String id) throws MyException{
         
-        if (companyRepository.existsById(companyId)){
-            List<JobApplication> jobApplicationsbycompany = jobApplicationRepository.findByCompanyId(companyId);
+        if (companyRepository.existsById(id)){
+            List<JobApplication> jobApplicationsbycompany = jobApplicationRepository.findByCompanyId(id);
             jobApplicationRepository.deleteAll(jobApplicationsbycompany);
-            companyRepository.deleteById(companyId);
+            companyRepository.deleteById(id);
         } else {
-            throw new MyException("The company ID: " + companyId + " was not found.");
+            throw new MyException("The company ID: " + id + " was not found.");
         }
     }
     

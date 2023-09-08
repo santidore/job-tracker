@@ -24,6 +24,9 @@ public interface JobApplicationRepository extends JpaRepository <JobApplication,
     
     @Query("SELECT j FROM JobApplication j JOIN j.company c WHERE c.companyName = :companyName")
     public List<JobApplication> findByCompanyName(@Param("companyName") String companyName);
+    
+    @Query("SELECT j FROM JobApplication j JOIN j.company c WHERE c.id = :id")
+    public List<JobApplication> findByCompanyId(@Param("id") String id);
 
 }
 
