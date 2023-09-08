@@ -16,6 +16,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -90,6 +91,20 @@ public class JobApplicationController {
                     + "    \"companyName\": \"My Company\",\n"
                     + "    \"recruiter\": \"Jhon Recruiter\"\n"
                     + "}");
+        }
+    }
+    
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteApplication(@PathVariable String id){
+        // Checks if the ID is provided
+        if (id == null || id.isEmpty()) {
+            return ResponseEntity.badRequest().body("Invalid Job Application ID.");
+        }
+        try {
+            jobApplicationService.deleteJobApplication(id);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Job Application ID: \" " + id + "\" deleted succesfuly.");
+        }catch (MyException e){
+            return ResponseEntity.badRequest().body("Error deleting the Job Application.");
         }
     }
     

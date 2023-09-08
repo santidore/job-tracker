@@ -28,6 +28,19 @@ You can append the specific endpoints below to this base URL to access different
 **Error Response:** Returns an error message if the request data is invalid or if an issue occurs during creation.
 
 ---
+### Delete Job Application
+
+**URL:** `DEL /jobapplication/delete/{id}`
+
+**Description:** Deletes a job application.
+
+**Request Parameters:** You must provide the ID of the job application you want to delete in the URL.
+
+**Successful Response:** Returns a success message.
+
+**Error Response:** Returns an error message if the ID is invalid or if the job application was not found.
+
+---
 
 ### Update Job Application
 
@@ -98,7 +111,19 @@ You can append the specific endpoints below to this base URL to access different
 **Error Response:** Returns an error message if the request data is invalid or if an issue occurs during creation.
 
 ---
+### Delete Company
 
+**URL:** `DEL /company/delete/{id}`
+
+**Description:** Deletes a company.
+
+**Request Parameters:** You must provide the ID of the company you want to delete in the URL.
+
+**Successful Response:** Returns a success message.
+
+**Error Response:** Returns an error message if the ID is invalid or if the company was not found.
+
+---
 ### List All Companies
 
 **URL:** `GET /company/list`

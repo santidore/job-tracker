@@ -59,4 +59,13 @@ public class CompanyService {
         return companyList;
     }
     
+    public void deleteCompany(String id){
+        
+        if (companyRepository.existsById(id)){
+            companyRepository.deleteById(id);
+        } else {
+            throw new MyException("The company ID: " + id + " was not found.");
+        }
+    }
+    
 }
