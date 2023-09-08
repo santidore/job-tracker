@@ -2,8 +2,10 @@
 package com.santidore.jobtracker.services;
 
 import com.santidore.jobtracker.entities.Company;
+import com.santidore.jobtracker.entities.JobApplication;
 import com.santidore.jobtracker.exceptions.MyException;
 import com.santidore.jobtracker.repositories.CompanyRepository;
+import com.santidore.jobtracker.repositories.JobApplicationRepository;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +22,8 @@ public class CompanyService {
     
     @Autowired
     CompanyRepository companyRepository;
+    @Autowired
+    JobApplicationRepository jobApplicationRepository;
     
     //Creates a new company if it's not been previously created
     @Transactional
@@ -59,12 +63,15 @@ public class CompanyService {
         return companyList;
     }
     
-    public void deleteCompany(String id){
+    @Transactional
+    public void deleteCompany(String companyId) throws MyException{
         
-        if (companyRepository.existsById(id)){
-            companyRepository.deleteById(id);
+        if (companyRepository.existsById(companyId)){
+            List<JobApplication> jobApplicationsbycompany = jobApplicationRepository.findByCompanyId(companyId);
+            jobApplicationRepository.deleteAll(jobApplicationsbycompany);
+            companyRepository.deleteById(companyId);
         } else {
-            throw new MyException("The company ID: " + id + " was not found.");
+            throw new MyException("The company ID: " + companyId + " was not found.");
         }
     }
     

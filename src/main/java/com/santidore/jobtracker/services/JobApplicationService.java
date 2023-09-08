@@ -47,6 +47,7 @@ public class JobApplicationService {
         jobApplicationRepository.save(ja);
     }
     
+    @Transactional
     public void deleteJobApplication(String id) throws MyException {
         
         if (jobApplicationRepository.existsById(id)) {

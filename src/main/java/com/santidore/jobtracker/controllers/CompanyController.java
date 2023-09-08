@@ -51,14 +51,14 @@ public class CompanyController {
     }
     
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteCompany(@PathVariable String id){
-                // Checks if the ID is provided
+    public ResponseEntity<String> deleteCompany(@PathVariable String id) throws MyException{
+        // Checks if the ID is provided
         if (id == null || id.isEmpty()) {
             return ResponseEntity.badRequest().body("Invalid Company ID.");
         }
         try {
             companyService.deleteCompany(id);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Company ID: \" " + id + "\" deleted succesfuly.");
+            return ResponseEntity.status(HttpStatus.CREATED).body("Company ID: \"" + id + "\" deleted succesfuly.");
         }catch (MyException e){
             return ResponseEntity.badRequest().body("Error deleting the Company.");
         }
